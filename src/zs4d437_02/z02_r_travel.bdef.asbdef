@@ -106,7 +106,8 @@ etag master LocChangedAt
   association _Travel { with draft; } //CDS Alias
 
   //  mapping for z02_tritem corresponding //alt
-  mapping for /lrn/437_s_tritem control /lrn/437_s_tritemx corresponding //neu
+  mapping for /lrn/437_s_tritem
+      control /lrn/437_s_tritemx corresponding //neu
     {
       ItemUuid           = item_uuid;
       AgencyId           = agency_id;
