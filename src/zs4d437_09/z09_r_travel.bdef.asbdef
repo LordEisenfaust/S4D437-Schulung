@@ -21,7 +21,7 @@ early numbering
   action ( features : instance ) cancelTravel;
   field ( features : instance ) BeginDate, EndDate;
 
-  draft action Edit;
+   draft action Edit;
   draft action Resume;
   draft action Activate optimized;
   draft action Discard;
