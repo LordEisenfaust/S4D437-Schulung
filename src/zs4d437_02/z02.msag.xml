@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z02</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Cannot cancel a trip that is already cancelled</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Cannot cancel a trip that has already begun</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Field must be filled</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Customer &amp;1 not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Begin Date in the past is not possible</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>End Date in the past is not possible</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>End Date must be after Begin Date</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z02</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Flight date is outwith the travel dates</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

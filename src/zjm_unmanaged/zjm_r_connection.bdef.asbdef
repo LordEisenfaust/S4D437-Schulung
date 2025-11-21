@@ -1,0 +1,33 @@
+unmanaged implementation in class zbp_jm_r_connection unique;
+strict ( 2 );
+with draft;
+define behavior for Zjm_R_Connection //alias <alias_name>
+draft table zjmconnd
+//late numbering
+
+lock master
+total etag changedAt
+authorization master ( instance )
+etag master LocChangedAt
+{
+  create ( authorization : global );
+ // update;
+ //  delete;
+  field (  readonly : update  ) CarrierId, ConnectionId;
+
+draft action Edit;
+draft action Resume;
+draft action Activate optimized ;
+draft action Discard;
+draft determine action Prepare;
+
+//determination determineFromCity on save { create; field Cityfrom; }
+//determination determineToCity on save {create; field CityTo; }
+
+  mapping for zjmconn corresponding {
+  CarrierId = carrier_Id;
+  ConnectionId = connection_Id;
+  ChangedAt = changed_At;
+  LocChangedAt = loc_Changed_at;
+  }
+}

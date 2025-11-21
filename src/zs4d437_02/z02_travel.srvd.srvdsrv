@@ -1,0 +1,5 @@
+@EndUserText.label: 'Travel S4D437'
+define service Z02_TRAVEL {
+  expose Z02_C_TRAVEL     as Travel;
+  expose Z02_C_TRAVELITEM as Item;
+}

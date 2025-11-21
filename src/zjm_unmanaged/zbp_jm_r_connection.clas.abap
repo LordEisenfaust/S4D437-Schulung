@@ -1,0 +1,5 @@
+CLASS zbp_jm_r_connection DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zjm_r_connection.
+ENDCLASS.
+
+CLASS zbp_jm_r_connection IMPLEMENTATION.
+ENDCLASS.

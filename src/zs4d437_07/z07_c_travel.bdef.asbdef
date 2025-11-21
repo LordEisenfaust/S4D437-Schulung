@@ -1,0 +1,40 @@
+projection;
+strict ( 2 );
+
+use draft;
+use side effects;
+
+define behavior for z07_c_travel alias Travel
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _travelitem { create; with draft; }
+
+use action cancel_travel;
+
+use action Edit;
+use action Activate;
+use action Discard;
+use action Prepare;
+use action Resume;
+
+use action checkCustomer;
+use action adjustDuration;
+
+side effects { determine action checkCustomer
+               executed on field CustomerId
+               affects messages;
+}
+
+}
+define behavior for z07_c_travelitem
+use etag
+{
+use update;
+use delete;	
+
+use association _travel { with draft; }
+}

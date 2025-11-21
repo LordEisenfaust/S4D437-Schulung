@@ -1,0 +1,149 @@
+managed implementation in class zbp_06_r_travel unique;
+strict ( 2 );
+with draft;
+
+define behavior for Z06_R_TRAVEL alias Travel
+persistent table z06_travel ##UNMAPPED_FIELD
+draft table z06_travel_d
+lock master
+total etag ChangedAt
+authorization master ( instance )
+etag master LocChangedAt //ChangedAt
+early numbering
+
+{
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+  {  //im ODATA Service kann man nun vorher die Daten validieren, ohne danch direkt zu aktivieren
+    validation validateDescription;
+    validation validateCustomer;
+    validation validateBeginDate;
+    validation validateEndDate;
+    validation validateDataSequence;
+    validation Item~validateFlightDate;
+  }
+
+  create ( authorization : global );
+  update ( features : instance );
+  delete;
+
+
+
+
+  field ( readonly ) Status, ChangedAt, ChangedBy, LocChangedAt, Duration;
+  //field ( readonly : update, mandatory : create ) AgencyID, TravelId;
+  field ( readonly ) AgencyId, TravelId;
+  field ( mandatory )
+  Description,
+  // CustomerId,
+  // BeginDate,
+  EndDate;
+  field ( features : instance ) CustomerId, BeginDate;
+
+  action ( features : instance ) cancel_travel;
+
+  validation validateDescription on save { create; field Description; }  //Funktion für die Validierung
+  validation validateCustomer on save { create; field CustomerId; } // create = generell beim anlegen die Prüfung durchführen. field ... Dieses Feld
+  // auch bei jeder Änderung prüfen
+  validation validateBeginDate on save { create; field BeginDate; }
+  validation validateEndDate on save { create; field EndDate; }
+  validation validateDataSequence on save { create; field BeginDate, EndDate; }
+  determination determineStatus on modify { create; }
+
+
+  determine action CheckCustomer
+  {
+    validation validateCustomer;
+  }
+
+  determine action adjustDuration
+  {
+    validation validateBeginDate;
+    validation validateEndDate;
+    validation validateDataSequence;
+    determination determineDuration;
+  }
+
+  side effects  // Process-after-input (Dynpro Logik)
+  {
+    //Event wenn sich die Felder Begin und Enddate ändern
+
+    determine action adjustDuration
+    executed on field BeginDate,
+    field EndDate
+    affects field Duration, messages;
+
+    //Event für Customer Id
+    determine action CheckCustomer
+    executed on field CustomerId
+    affects messages;
+  }
+
+
+  determination determineDuration on save
+  {
+    field BeginDate,
+    EndDate;
+  }
+
+  association _Item { create; with draft; }   //Posis dürfen angelegt werden, auch im Draft
+
+  mapping for z06_travel corresponding
+    {
+      AgencyId     = agency_id;
+      TravelId     = travel_id;
+      // Description = description;
+      CustomerId   = customer_id;
+      BeginDate    = begin_date;
+      EndDate      = end_date;
+      //Status    =   status;
+      ChangedAt    = changed_at;
+      ChangedBy    = changed_by;
+      LocChangedat = loc_changed_at;
+    }
+}
+
+define behavior for z06_R_TRAVELITEM alias Item    //Die Behavier Definition brauche ich auch
+persistent table z06_tritem                        //für die Positionen
+draft table z06_tritem_d    //Da der Kopf auch Draft kann, muss es die Position auch können
+lock dependent by _Travel   //Die Positionssperre ist abhängig von der Kopfsperre
+authorization dependent by _Travel   //Berechtigung ebenfalls
+etag master LocChangedAt //ChangedAt
+{
+          //hier gibt es keinen Create, da eine Position nicht sep. angelegt werden darf (nie ohne Kopf)
+  update;
+  delete;
+  field ( readonly, numbering : managed ) itemUUID;  //Der Schlüssel itemUUID (Alternative zur Posnummer)
+  field ( readonly ) AgencyId, TravelId;
+
+
+  validation validateFlightDate on save {
+  create; field FlightDate;
+  }
+
+  determination determineTravleDates on save {
+  field FlightDate;  }
+
+  association _Travel { with draft; } //Da der Kopf draft-fähig ist, muss es die Posi auch sein
+
+  //Auch hier muss wieder das "umgekehrte Mapping" erfolgen. JavaSript Feld zum DB Feld
+  mapping for z06_tritem corresponding
+    {
+      ItemUuid           = item_uuid;
+      AgencyId           = agency_id;
+      TravelId           = travel_id;
+      CarrierId          = carrier_id;
+      ConnectionId       = connection_id;
+      FlightDate         = flight_date;
+      BookingId          = booking_id;
+      PassengerFirstName = passenger_first_name;
+      PassengerLastName  = passenger_last_name;
+      ChangedAt          = changed_at;
+      ChangedBy          = changed_by;
+      LocChangedAt       = loc_changed_at;
+    }
+}

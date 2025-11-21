@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z01_MESSAGE</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Nachrichten</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Reise bereits storniert</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Reise erfolgreich storniert</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Reise bereits begonnen</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Bitte Beschreibung eingeben</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Kunde &amp;1 ist ungültig</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Reisebeginn ist initial</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Reisebeginn muss in der Zukunft liegen</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Reiseende muss grösser als Reisebeginn sein</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Status N automatisch ermittelt.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z01_MESSAGE</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Reisedaten wurden gemäss Flugdaten angepasst.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

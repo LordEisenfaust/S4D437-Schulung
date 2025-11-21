@@ -1,0 +1,153 @@
+managed implementation in class zcl_bp_01_r_travel unique;
+strict ( 2 );
+with draft;
+
+define behavior for Z01_R_TRAVEL alias Travel
+persistent table z01_travel ##unmapped_field
+with additional save
+draft table z01_d_travel
+lock master
+total etag ChangedAt
+authorization master ( instance )
+
+etag master LocChangedAt
+early numbering
+{
+
+  association _TravelItem { create; with draft; }
+
+  create ( authorization : global );
+  update ( features : instance );
+  delete;
+  action ( features : instance ) cancel_travel;
+
+  determine action CheckCustomer
+  {
+    validation validateCustomerIdOnSave;
+  }
+
+  determine action AdjustDuration
+  {
+    validation validateDates;
+    //determination Update;
+  }
+
+  event TravelCreated parameter Z01_A_EVENT;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+  {
+    validation validateDescriptionOnSave;
+    validation validateCustomerIdOnSave;
+    validation validateDates;
+  }
+
+  side effects
+  {
+    action cancel_travel affects permissions ( action cancel_travel, update ), field Status;
+
+    determine action CheckCustomer executed on field CustomerId affects messages;
+
+    determine action AdjustDuration executed on field BeginDate, field Enddate affects field Duration, messages;
+
+    //field Begindate affects $self;
+    //field Enddate affects $self;
+  }
+
+  validation validateDescriptionOnSave on save { create; field Description; }
+  validation validateCustomerIdOnSave on save { create; field CustomerId; }
+  validation validateDates on save { create; field BeginDate; field Enddate; }
+
+  determination Update on modify { field BeginDate, Enddate; }
+  determination Init on modify { create; }
+
+
+  field ( readonly ) Status, Changedat, Changedby, LocChangedAt, Duration;
+  field ( readonly ) AgencyId, TravelId;
+  field ( mandatory ) Description, CustomerId;
+  field ( features : instance ) BeginDate, Enddate;
+
+  mapping for z01_travel corresponding
+    {
+      AgencyId     = agency_id;
+      TravelId     = travel_id;
+      CustomerId   = customer_id;
+      BeginDate    = begin_date;
+      EndDate      = end_date;
+      ChangedAt    = changed_at;
+      ChangedBy    = changed_by;
+      LocChangedAt = loc_changed_at;
+    }
+}
+
+
+//Behavior for child entity
+define behavior for Z01_R_TRAVELITEM alias Item
+with unmanaged save
+draft table z01_d_tritem
+authorization dependent by _Travel
+lock dependent by _Travel
+etag master LocChangedAt
+{
+
+  association _Travel { with draft; }
+
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) ItemUuid;
+
+  field ( readonly ) AgencyId, TravelId;
+
+  determine action AdjustTravelDates
+  {
+    determination TravelDates;
+  }
+
+  determination TravelDates on save { field FlightDate; }
+
+  side effects
+  {
+
+    determine action AdjustTravelDates executed on field FlightDate affects entity _Travel;
+
+  }
+
+  mapping for z01_tritem corresponding
+    {
+      ItemUuid           = item_uuid;
+      AgencyId           = agency_id;
+      TravelId           = travel_id;
+      CarrierId          = carrier_id;
+      ConnectionId       = connection_id;
+      FlightDate         = flight_date;
+      BookingId          = booking_id;
+      PassengerFirstName = passenger_first_name;
+      PassengerLastName  = passenger_last_name;
+      ChangedAt          = changed_at;
+      ChangedBy          = changed_by;
+      LocChangedAT       = loc_changed_at;
+    }
+
+  mapping for /lrn/437_s_tritem control /lrn/437_s_tritemx corresponding
+    {
+      ItemUuid           = item_uuid;
+      AgencyId           = agency_id;
+      TravelId           = travel_id;
+      CarrierId          = carrier_id;
+      ConnectionId       = connection_id;
+      FlightDate         = flight_date;
+      BookingId          = booking_id;
+      PassengerFirstName = passenger_first_name;
+      PassengerLastName  = passenger_last_name;
+      ChangedAt          = changed_at;
+      ChangedBy          = changed_by;
+      LocChangedAT       = loc_changed_at;
+    }
+
+
+
+}

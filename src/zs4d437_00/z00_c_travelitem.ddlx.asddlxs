@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+
+@UI: {
+   headerInfo: {
+     typeName: 'Flight Travel Item',
+     typeNamePlural: 'Flight Travel Items'
+               }
+     }
+
+annotate view z00_c_travelitem with
+  {
+
+    @UI.facet: [ { id:            'Booking',
+                  purpose:       #STANDARD,
+                  type:          #IDENTIFICATION_REFERENCE,
+                  label:         'Travel Item',
+                  position:      10 } ]
+
+    @UI.hidden: true
+    itemuuid;
+
+    @UI: {
+          identification: [ { position: 10, importance: #LOW } ]
+        }
+    agencyid;
+    @UI: {
+            identification: [ { position: 20, importance: #LOW } ]
+          }
+    travelid;
+    @UI: {
+            lineItem:       [ { position: 30, importance: #HIGH } ],
+            identification: [ { position: 30, importance: #HIGH } ]
+          }
+
+    carrierid;
+    @UI: {
+            lineItem:       [ { position: 40, importance: #HIGH } ],
+            identification: [ { position: 40, importance: #HIGH } ]
+          }
+    connectionid;
+    @UI: {
+            lineItem:       [ { position: 50, importance: #HIGH } ],
+            identification: [ { position: 50, importance: #HIGH } ]
+          }
+    flightdate;
+    @UI: {
+            lineItem:       [ { position: 60, importance: #HIGH } ],
+            identification: [ { position: 60, importance: #HIGH } ]
+          }
+    bookingid;
+    @UI: {
+            lineItem:       [ { position: 20, importance: #HIGH } ],
+            identification: [ { position: 70, importance: #MEDIUM } ]
+         }
+    passengerfirstname;
+    @UI: {
+            lineItem:       [ { position: 10, importance: #HIGH } ],
+            identification: [ { position: 80, importance: #MEDIUM } ]
+         }
+    passengerlastname;
+
+    @UI.hidden: true
+    changedat;
+    @UI.hidden: true
+    changedby;
+    @UI.hidden: true
+    locchangedat;
+
+  }

@@ -1,0 +1,6 @@
+@AbapCatalog.extensibility.extensible: true
+@EndUserText.label: 'Flight Travel (Service)'
+define service Z01_TRAVEL {
+  expose Z01_C_TRAVEL     as Travel;
+  expose Z01_C_TRAVELITEM as TravelItem;
+}

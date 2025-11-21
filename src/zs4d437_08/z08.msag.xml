@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z08</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Message</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Is canceled</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>is running</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Description is blank</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Custommer &amp;1 not exist</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Date is not valid</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>Z08</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Enddate bevor Startdate</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>
