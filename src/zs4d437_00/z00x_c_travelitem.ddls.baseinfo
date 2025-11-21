@@ -3,7 +3,7 @@
 {
 "FROM":
 [
-"Z02_TRITEM"
+"Z00_R_TRAVELITEM"
 ],
 "ASSOCIATED":
 [],

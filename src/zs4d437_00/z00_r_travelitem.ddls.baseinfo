@@ -3,6 +3,7 @@
 {
 "FROM":
 [
+"Z00_E_TRAVELITEM",
 "Z00_TRITEM"
 ],
 "ASSOCIATED":

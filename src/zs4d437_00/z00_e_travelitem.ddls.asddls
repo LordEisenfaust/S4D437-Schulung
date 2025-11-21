@@ -14,9 +14,9 @@
     dataSources: [ 'Item' ],
     allowNewDatasources: false
 }    
-define view entity Z00_E_TRAVELITEM as select from Z00_R_TRAVELITEM
+define view entity Z00_E_TRAVELITEM as select from z00_tritem
 as Item
 {
-    key ItemUuid
+    key item_uuid as ItemUUid
    
 }
