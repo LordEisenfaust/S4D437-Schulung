@@ -1,3 +1,36 @@
+CLASS lsc_z07_r_travel DEFINITION INHERITING FROM cl_abap_behavior_saver.
+
+  PROTECTED SECTION.
+
+    METHODS save_modified REDEFINITION.
+
+ENDCLASS.
+
+CLASS lsc_z07_r_travel IMPLEMENTATION.
+
+  METHOD save_modified.
+
+  data(model) = new /lrn/cl_s4d437_tritem( i_table_name = 'z07_tritem' ).
+
+  loop at delete-item assigning FIELD-SYMBOL(<item_d>).
+    model->delete_item( i_uuid = <item_d>-ItemUuid ).
+  endloop.
+
+  loop at create-item ASSIGNING FIELD-SYMBOL(<item_c>).
+    model->create_item(
+            i_item = corresponding #( <item_c> mapping from entity ) ).
+  endloop.
+
+  loop at update-item assigning FIELD-SYMBOL(<item_u>).
+    model->update_item(
+        i_item  =   corresponding #( <item_u> mapping from entity )
+        i_itemx =   corresponding #( <item_u> mapping from entity using control ) ).
+  endloop.
+
+  ENDMETHOD.
+
+ENDCLASS.
+
 CLASS lhc_item DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
   PRIVATE SECTION.
