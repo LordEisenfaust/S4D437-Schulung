@@ -2,6 +2,13 @@ managed implementation in class zbp_00_r_travel unique;
 strict ( 2 );
 with draft;
 
+extensible  {
+with determinations on modify;
+with determinations on save;
+with validations on save;
+with additional save;
+}
+
 define behavior for Z00_R_TRAVEL alias Travel
 persistent table z00_travel ##unmapped_field
 with additional save
@@ -11,6 +18,7 @@ total etag changedAt
 authorization master ( instance )
 etag master LocChangedAt
 early numbering
+extensible
 {
   create ( authorization : global );
   update ( features: instance );
@@ -30,7 +38,7 @@ draft action Edit;
 draft action Resume;
 draft action Activate optimized;
 draft action Discard;
-draft determine action Prepare {
+draft determine action Prepare extensible {
 validation validateCustomer;
 validation validateBeginDate;
 validation validateEndDate;
@@ -83,6 +91,7 @@ draft table z00_tritemd
 lock dependent by _Travel
 authorization dependent by _Travel
 etag master LocChangedAt
+extensible
 {
 
 
@@ -95,8 +104,8 @@ validation validateDate on save { create; field FlightDate; }
 
 association _Travel { with draft; }
 
-mapping for  /lrn/437_s_tritem
-     control /lrn/437_s_tritemx corresponding
+mapping for  /lrn/437_s_tritem ##unextensible_mapping
+     control /lrn/437_s_tritemx corresponding ##unextensible_mapping
     {
       ItemUuid           = item_uuid;
       AgencyId           = agency_id;

@@ -7,10 +7,7 @@
 "Z02_TRITEM"
 ],
 "ASSOCIATED":
-[
-"Z02_E_TRAVELITEM",
-"Z02_R_TRAVEL"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":
